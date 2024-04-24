@@ -36,8 +36,37 @@ function displayLibrary() {
         //add each book info to the card
         console.log(book);
         let el = document.createElement("div");
-        el.ClassName = "card";
+        el.classList.add("card");
         el.innerText = `${book.title}`
+
+        let author = document.createElement("div");
+        author.classList.add("subtext");
+        author.innerText = `Author: ${book.author}`;
+
+        let pages = document.createElement("div");
+        pages.classList.add("subtext");
+        pages.innerText = `Page Count: ${book.pageCount}`;
+
+        let year = document.createElement("div");
+        year.classList.add("subtext");
+        year.innerText = `Year Written: ${book.yearWritten}`;
+
+        let read = document.createElement("div");
+        read.classList.add("subtext");
+
+        if(book.read === true) {
+            book.read = 'Yes';
+        }
+        else if (book.read === false) {
+            book.read = 'No';
+        }
+        read.innerText = `Read: ${book.read}`;
+
+        el.append(author);
+        el.append(pages);
+        el.append(year);
+        el.append(read);
+        
         cardContainer.append(el);
     })
 }
