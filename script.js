@@ -1,4 +1,7 @@
 const myLibrary = [];
+let cardContainer = document.getElementById("container");
+let newBookButton = document.getElementById("newBookButton");
+newBookButton.addEventListener("click", newBook);
 
 
 function Book(title, author, pageCount, yearWritten, read) {
@@ -27,8 +30,6 @@ function Book(title, author, pageCount, yearWritten, read) {
         console.log(myLibrary);
     }
 }
-
-let cardContainer = document.getElementById("container")
 
 function displayLibrary() {
     myLibrary.forEach(function(book) {
@@ -66,9 +67,13 @@ function displayLibrary() {
         el.append(pages);
         el.append(year);
         el.append(read);
-        
+
         cardContainer.append(el);
     })
+}
+
+function newBook() {
+
 }
 
 let theHobbit = new Book('The Hobbit', 'J.R.R. Tolkien', 295, 1937, true);
