@@ -1,7 +1,6 @@
 const myLibrary = [];
 let cardContainer = document.getElementById("container");
-let newBookButton = document.getElementById("newBookButton");
-newBookButton.addEventListener("click", newBook);
+let newBookButton = document.getElementById("newBookButton").addEventListener("click", newBook);
 
 
 function Book(title, author, pageCount, yearWritten, read) {
@@ -55,6 +54,11 @@ function displayLibrary() {
         let read = document.createElement("div");
         read.classList.add("subtext");
 
+        let deleteBook = document.createElement("button");
+        deleteBook.classList.add("deleteBook");
+        deleteBook.textContent = `Delete`;
+        deleteBook.addEventListener('click', removeBook)
+
         if(book.read === true) {
             book.read = 'Yes';
         }
@@ -67,13 +71,34 @@ function displayLibrary() {
         el.append(pages);
         el.append(year);
         el.append(read);
+        el.append(deleteBook);
 
         cardContainer.append(el);
     })
 }
 
 function newBook() {
+    this.title = document.getElementById('title').value;
+    this.author = document.getElementById('author').value;
+    this.pages = Number(document.getElementById('pages').value);
+    this.yearWritten = Number(document.getElementById('yearWritten').value);
+    this.read = document.getElementById('read').value;
 
+    if (this.read = 'Yes') {
+        this.read = true;
+    }
+    else if(this.read = 'No') {
+        this.read = false;
+    }
+
+    let temporaryBook = new Book(this.title, this.author, this.pages, this.yearWritten, this.read);
+    temporaryBook.bookDescription();
+    temporaryBook.addBooktoLibrary();
+    displayLibrary();
+}
+
+function removeBook() {
+    
 }
 
 let theHobbit = new Book('The Hobbit', 'J.R.R. Tolkien', 295, 1937, true);
