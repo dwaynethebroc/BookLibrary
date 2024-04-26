@@ -1,10 +1,11 @@
-const myLibrary = [];
+let myLibrary = new Array();
 let cardContainer = document.getElementById("container");
 let newBookButton = document.getElementById("newBookButton").addEventListener("click", newBook);
 
 
 function Book(title, author, pageCount, yearWritten, read) {
     //constructor function
+
     this.title = title;
     this.author = author;
     this.pageCount = pageCount;
@@ -31,9 +32,14 @@ function Book(title, author, pageCount, yearWritten, read) {
 }
 
 function displayLibrary() {
+    while(cardContainer.firstChild){
+        cardContainer.removeChild(cardContainer.firstChild);
+    }
+
     myLibrary.forEach(function(book) {
         //create a card
         //add each book info to the card
+
         console.log(book);
         let el = document.createElement("div");
         el.classList.add("card");
@@ -74,6 +80,8 @@ function displayLibrary() {
         el.append(deleteBook);
 
         cardContainer.append(el);
+
+        event.preventDefault();
     })
 }
 
@@ -84,10 +92,10 @@ function newBook() {
     this.yearWritten = Number(document.getElementById('yearWritten').value);
     this.read = document.getElementById('read').value;
 
-    if (this.read = 'Yes') {
+    if (this.read === 'Yes') {
         this.read = true;
     }
-    else if(this.read = 'No') {
+    else if(this.read === 'No') {
         this.read = false;
     }
 
