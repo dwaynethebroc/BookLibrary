@@ -1,7 +1,7 @@
 let myLibrary = new Array();
 let cardContainer = document.getElementById("container");
 let newBookButton = document.getElementById("newBookButton").addEventListener("click", newBook);
-
+let index = 0;
 
 function Book(title, author, pageCount, yearWritten, read) {
     //constructor function
@@ -34,6 +34,7 @@ function Book(title, author, pageCount, yearWritten, read) {
 function displayLibrary() {
     while(cardContainer.firstChild){
         cardContainer.removeChild(cardContainer.firstChild);
+        index--;
     }
 
     myLibrary.forEach(function(book) {
@@ -61,9 +62,15 @@ function displayLibrary() {
         read.classList.add("subtext");
 
         let deleteBook = document.createElement("button");
-        deleteBook.classList.add("deleteBook");
+        deleteBook.classList.add(`"deleteBook"`);
+        deleteBook.id = `${index}`;
         deleteBook.textContent = `Delete`;
         deleteBook.addEventListener('click', removeBook)
+
+        let changeReadStatus = document.createElement("button");
+        changeReadStatus.classList.add(`"changeReadStatus"`);
+        changeReadStatus.textContent = `Change Read Status`;
+        changeReadStatus.addEventListener('click', changeRead)
 
         if(book.read === true) {
             book.read = 'Yes';
@@ -78,8 +85,10 @@ function displayLibrary() {
         el.append(year);
         el.append(read);
         el.append(deleteBook);
+        el.append(changeReadStatus);
 
         cardContainer.append(el);
+        index++;
 
         event.preventDefault();
     })
@@ -106,7 +115,21 @@ function newBook() {
 }
 
 function removeBook() {
+    //go through array and if selected book that triggered event is selected, remove from array
     
+    console.log(this);
+
+    for(i=0; i<=myLibrary.length; i++){
+        if(myLibrary[i] === this.id){
+            myLibrary.splice(i, 1)
+        }
+    }
+
+    displayLibrary();
+}
+
+function changeRead() {
+
 }
 
 let theHobbit = new Book('The Hobbit', 'J.R.R. Tolkien', 295, 1937, true);
