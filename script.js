@@ -117,11 +117,13 @@ function newBook() {
 function removeBook() {
     //go through array and if selected book that triggered event is selected, remove from array
     
-    console.log(this);
+    let buttonID = parseInt(this.id);
+    console.log(myLibrary);
 
-    for(i=0; i<=myLibrary.length; i++){
-        if(myLibrary[i] === this.id){
-            myLibrary.splice(i, 1)
+    for(let i=0; i<=myLibrary.length; i++){
+        if( i === buttonID){
+            myLibrary.splice(i, 1);
+            console.log(myLibrary);
         }
     }
 
@@ -133,10 +135,8 @@ function changeRead() {
 }
 
 let theHobbit = new Book('The Hobbit', 'J.R.R. Tolkien', 295, 1937, true);
-theHobbit.bookDescription();    
-
 let prideAndPrejudice = new Book('Pride and Prejudice', 'Jane Austen', 254, 1813, false);
-prideAndPrejudice.bookDescription();
+
 
 theHobbit.addBooktoLibrary();
 prideAndPrejudice.addBooktoLibrary();
