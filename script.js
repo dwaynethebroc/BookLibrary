@@ -69,6 +69,7 @@ function displayLibrary() {
 
         let changeReadStatus = document.createElement("button");
         changeReadStatus.classList.add(`"changeReadStatus"`);
+        changeReadStatus.id = `${index}`;
         changeReadStatus.textContent = `Change Read Status`;
         changeReadStatus.addEventListener('click', changeRead)
 
@@ -118,12 +119,10 @@ function removeBook() {
     //go through array and if selected book that triggered event is selected, remove from array
     
     let buttonID = parseInt(this.id);
-    console.log(myLibrary);
 
     for(let i=0; i<=myLibrary.length; i++){
         if( i === buttonID){
             myLibrary.splice(i, 1);
-            console.log(myLibrary);
         }
     }
 
@@ -131,12 +130,30 @@ function removeBook() {
 }
 
 function changeRead() {
+    let readButton = parseInt(this.id);
+
+    for(let i = 0; i<=myLibrary.length; i++) {
+        if(i === readButton) {
+            console.log(myLibrary[i].read)
+
+            if(myLibrary[i].read === 'Yes'){
+                myLibrary[i].read = 'No';
+                console.log(myLibrary[i].read)
+            }
+
+            else if(myLibrary[i].read === 'No') {
+                myLibrary[i].read = 'Yes';
+                console.log(myLibrary[i].read)
+            }
+        }
+    }
+
+    displayLibrary();
 
 }
 
 let theHobbit = new Book('The Hobbit', 'J.R.R. Tolkien', 295, 1937, true);
 let prideAndPrejudice = new Book('Pride and Prejudice', 'Jane Austen', 254, 1813, false);
-
 
 theHobbit.addBooktoLibrary();
 prideAndPrejudice.addBooktoLibrary();
