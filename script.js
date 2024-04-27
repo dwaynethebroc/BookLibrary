@@ -138,16 +138,13 @@ function changeRead() {
 
     for(let i = 0; i<=myLibrary.length; i++) {
         if(i === readButton) {
-            console.log(myLibrary[i].read)
-
+            
             if(myLibrary[i].read === 'Yes'){
                 myLibrary[i].read = 'No';
-                console.log(myLibrary[i].read)
             }
 
             else if(myLibrary[i].read === 'No') {
                 myLibrary[i].read = 'Yes';
-                console.log(myLibrary[i].read)
             }
         }
     }
