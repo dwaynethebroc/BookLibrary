@@ -73,10 +73,10 @@ function displayLibrary() {
         changeReadStatus.textContent = `Change Read Status`;
         changeReadStatus.addEventListener('click', changeRead)
 
-        if(book.read === true) {
+        if(book.read === true || book.read === 'yes') {
             book.read = 'Yes';
         }
-        else if (book.read === false) {
+        else if (book.read === false || book.read === 'no') {
             book.read = 'No';
         }
         read.innerText = `Read: ${book.read}`;
@@ -100,7 +100,7 @@ function newBook() {
     this.author = document.getElementById('author').value;
     this.pages = Number(document.getElementById('pages').value);
     this.yearWritten = Number(document.getElementById('yearWritten').value);
-    this.read = document.getElementById('read').value;
+    this.read = document.querySelector('input[name="read"]:checked').value
 
     if (this.read === 'Yes') {
         this.read = true;
