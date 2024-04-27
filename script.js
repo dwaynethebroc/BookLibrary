@@ -1,6 +1,10 @@
 let myLibrary = new Array();
 let cardContainer = document.getElementById("container");
 let newBookButton = document.getElementById("newBookButton").addEventListener("click", newBook);
+let formButton = document.getElementById("addBook").addEventListener("click", showForm);
+let divHider = document.getElementById("formHider");
+divHider.style.display = "none";
+
 let index = 0;
 
 function Book(title, author, pageCount, yearWritten, read) {
@@ -73,7 +77,7 @@ function displayLibrary() {
         changeReadStatus.textContent = `Change Read Status`;
         changeReadStatus.addEventListener('click', changeRead)
 
-        if(book.read === true || book.read === 'yes') {
+        if(book.read === true || book.read === 'let divHider = document.getElementById("formHider");') {
             book.read = 'Yes';
         }
         else if (book.read === false || book.read === 'no') {
@@ -100,7 +104,7 @@ function newBook() {
     this.author = document.getElementById('author').value;
     this.pages = Number(document.getElementById('pages').value);
     this.yearWritten = Number(document.getElementById('yearWritten').value);
-    this.read = document.querySelector('input[name="read"]:checked').value
+    this.read = document.querySelector('input[name="read"]:checked').value;
 
     if (this.read === 'Yes') {
         this.read = true;
@@ -149,7 +153,18 @@ function changeRead() {
     }
 
     displayLibrary();
+}
 
+function showForm() {
+    
+    if(divHider.style.display === "block") {
+        divHider.style.display = "none";
+    }
+    else if(divHider.style.display === "none") {
+        divHider.style.display = "block";
+    }
+
+    
 }
 
 let theHobbit = new Book('The Hobbit', 'J.R.R. Tolkien', 295, 1937, true);
