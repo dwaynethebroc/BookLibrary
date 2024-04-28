@@ -77,7 +77,7 @@ function displayLibrary() {
         changeReadStatus.textContent = `Change Read Status`;
         changeReadStatus.addEventListener('click', changeRead)
 
-        if(book.read === true || book.read === 'let divHider = document.getElementById("formHider");') {
+        if(book.read === true || book.read === 'yes') {
             book.read = 'Yes';
         }
         else if (book.read === false || book.read === 'no') {
@@ -138,7 +138,7 @@ function changeRead() {
 
     for(let i = 0; i<=myLibrary.length; i++) {
         if(i === readButton) {
-            
+
             if(myLibrary[i].read === 'Yes'){
                 myLibrary[i].read = 'No';
             }
