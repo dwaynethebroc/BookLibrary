@@ -7,31 +7,31 @@ divHider.style.display = "none";
 
 let index = 0;
 
-function Book(title, author, pageCount, yearWritten, read) {
-    //constructor function
+class Book {
 
-    this.title = title;
-    this.author = author;
-    this.pageCount = pageCount;
-    this.yearWritten = yearWritten;
-    this.read = read; 
-
- 
-    this.bookDescription = function() {
-        if(this.read === true){
-            read = 'read'
-        }
-        else if(this.read === false){
-            read = 'not read yet';
-        }
-    
-        console.log(`${this.title} by ${this.author}, ${this.pageCount}, ${read}`)
+    constructor(title, author, pageCount, yearWritten, read) {
+        this.title = title;
+        this.author = author;
+        this.pageCount = pageCount;
+        this.yearWritten = yearWritten;
+        this.read = read; 
     }
 
-    this.addBooktoLibrary = function() {
+
+    bookDescription() {
+        if(this.read === true){
+            this.read = 'Yes'
+        }
+        else if(this.read === false){
+            this.read = 'No';
+        }
+        console.log(`${this.title} by ${this.author}, ${this.pageCount}, ${this.read}`)
+    }
+
+    addBooktoLibrary() {
         myLibrary.push(this);
         console.log(this); 
-        console.log(myLibrary);
+        console.log(myLibrary);        
     }
 }
 
@@ -95,11 +95,13 @@ function displayLibrary() {
         cardContainer.append(el);
         index++;
 
-        event.preventDefault();
+
     })
 }
 
 function newBook() {
+    event.preventDefault();
+    
     this.title = document.getElementById('title').value;
     this.author = document.getElementById('author').value;
     this.pages = Number(document.getElementById('pages').value);
@@ -116,6 +118,7 @@ function newBook() {
     let temporaryBook = new Book(this.title, this.author, this.pages, this.yearWritten, this.read);
     temporaryBook.bookDescription();
     temporaryBook.addBooktoLibrary();
+    
     displayLibrary();
 }
 
