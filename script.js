@@ -94,8 +94,6 @@ function displayLibrary() {
 
         cardContainer.append(el);
         index++;
-
-
     })
 }
 
@@ -106,7 +104,7 @@ function newBook() {
     this.author = document.getElementById('author').value;
     this.pages = Number(document.getElementById('pages').value);
     this.yearWritten = Number(document.getElementById('yearWritten').value);
-    this.read = document.querySelector('input[name="read"]:checked').value;
+    this.read = document.getElementById('read').value;
 
     if (this.read === 'Yes') {
         this.read = true;
@@ -115,11 +113,18 @@ function newBook() {
         this.read = false;
     }
 
-    let temporaryBook = new Book(this.title, this.author, this.pages, this.yearWritten, this.read);
-    temporaryBook.bookDescription();
-    temporaryBook.addBooktoLibrary();
-    
-    displayLibrary();
+    let isValid = validateForm(this.title, this.author, this.pages, this.yearWritten);
+
+    if (isValid === true){
+        let temporaryBook = new Book(this.title, this.author, this.pages, this.yearWritten, this.read);
+        temporaryBook.bookDescription();
+        temporaryBook.addBooktoLibrary();
+        
+        displayLibrary();
+    } else {
+        showError();
+        return false;
+    }
 }
 
 function removeBook() {
@@ -166,6 +171,38 @@ function showForm() {
 
     
 }
+
+function validateForm(title, author, pages, yearWritten, read) {
+    console.log("validate form function ")
+    let isValid = true;
+
+    if(title === ""){
+        console.log("invalid title");
+        isValid = false;
+    } 
+    
+    if (author === "") {
+        console.log("invalid author");
+        isValid = false;
+    } 
+    
+    if (pages === 0) {
+        console.log("invalid pages");
+        isValid = false;
+    } 
+    
+    if (yearWritten === 0) {
+        console.log("invalid yearWritten");
+        isValid = false;
+    } 
+
+    return isValid;
+}
+
+function showError(){
+    console.log("showError function");
+}
+
 
 let theHobbit = new Book('The Hobbit', 'J.R.R. Tolkien', 295, 1937, true);
 let prideAndPrejudice = new Book('Pride and Prejudice', 'Jane Austen', 254, 1813, false);

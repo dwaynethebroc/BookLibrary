@@ -19,6 +19,28 @@ body {
     background-color: #7ac2e4;
 }
 
+#form {
+    display: flex;
+    flex-direction: column;
+    width: 250px;
+    height: 375px;
+    padding: 5px;
+    border-radius: 4px;
+}
+
+input + .valid {
+    border: 5px solid green;
+}
+
+input + .invalid {
+    border: 5px solid red;
+}
+
+label {
+    display: flex;
+    flex-direction: column;
+}
+
 #container {
     display: flex;
     gap: 10px;

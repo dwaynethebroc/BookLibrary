@@ -11,24 +11,51 @@
 
     <Button id='addBook'>ADD BOOK</Button>
     <div id="formHider">
-        <form>
-            <legend>Add a new book to the library</legend>
-            <fieldset>
-                <label for='title'>Title:</label><br>
-                <input type='text' id='title' name='title'><br>
-                <label for='author'>Author:</label><br>
-                <input type='text' id='author' name='author'><br>
-                <label for='pages'>Number of Pages:</label><br>
-                <input type='text' id='pages' name='pages'><br>
-                <label for='yearWritten'>Year Written:</label><br>
-                <input type='text' id='yearWritten' name='yearWritten'><br>
-                <label for='read'>Already read:</label><br>
-                <label for='Yes'>Yes</label>
-                <input type='radio' id='readYes' name='read' value='Yes'><br>
-                <label for='No'>No</label>
-                <input type='radio' id='readNO' name='read' value='No'><br>
-                <input type="submit" value='Add Book' id='newBookButton'>
-            </fieldset>
+        <form id='form' action='/'>
+                <div class='input' id='input'>
+                    <label for='title'>
+                    <span>Title:</span>
+                    <input type='text' id='title' name='title'>
+                    <span class='error title' aria-live='polite'></span>
+                    </label>
+                </div>
+
+                <div class='input' id='input'>
+                    <label for='author'>
+                    <span>Author:</span>
+                    <input type='text' id='author' name='author'>
+                    <span class='error author' aria-live='polite'></span>
+                    </label>
+                </div>
+                
+                <div class='input' id='input'>
+                    <label for='pages'>
+                    <span>Page Count:</span>
+                    <input type='text' id='pages' name='pages'>
+                    <span class='error pages' aria-live='polite'></span>
+                    </label>
+                </div>
+
+                <div class='input' id='input'>
+                    <label for='yearWritten'>
+                    <span>Year Written</span>
+                    <input type='text' id='yearWritten' name='yearWritten'>
+                    <span class='error yearWritten' aria-live='polite'></span>
+                    </label>
+                </div>
+
+                <div class='input' id='input'>
+                    <label for="read">
+                    <span>Already Read?</span>
+                    <select name="read" id="read">
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                    </select>
+                    <span class='error read' aria-live='polite'></span>
+                    </label>
+                </div>
+
+            <button id='newBookButton'>Submit</button> 
         </form>
     </div>
     
