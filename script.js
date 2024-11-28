@@ -113,9 +113,14 @@ function newBook() {
         this.read = false;
     }
 
-    let isValid = validateForm(this.title, this.author, this.pages, this.yearWritten);
+    let hasValues = validateForm(this.title, this.author, this.pages, this.yearWritten);
+    let validInputs = false;
 
-    if (isValid === true){
+    if (hasValues === true){
+        validInputs = showError();
+    } 
+
+    if(validInputs === true && hasValues === true){
         let temporaryBook = new Book(this.title, this.author, this.pages, this.yearWritten, this.read);
         temporaryBook.bookDescription();
         temporaryBook.addBooktoLibrary();
@@ -201,6 +206,63 @@ function validateForm(title, author, pages, yearWritten, read) {
 
 function showError(){
     console.log("showError function");
+
+    const title = document.getElementById('title');
+    const author = document.getElementById('author');
+    const pages = document.getElementById('pages');
+    const yearWritten = document.getElementById('yearWritten');
+
+    const titleErrorMessage = document.querySelector('#title + span.error');
+    const authorErrorMessage = document.querySelector('#author + span.error');
+    const pagesErrorMessage = document.querySelector('#pages + span.error');
+    const yearWrittenErrorMessage = document.querySelector('#yearWritten + span.error');
+
+    let pagesOnlyNumbers = isNaN(pages.value);
+    let yearWrittenOnlyNumbers = isNaN(yearWritten.value); 
+
+    if(title.value === ""){
+        title.className = "invalid";
+        titleErrorMessage.textContent = "Please enter the title";
+    } else {
+        title.className = "valid";
+        titleErrorMessage.textContent = "";
+    }
+
+    if(author.value === ""){
+        author.className = "invalid";
+        authorErrorMessage.textContent = "Please enter the author";
+    } else {
+        author.className = "valid";
+        authorErrorMessage.textContent = "";
+    }
+
+    if(pages.value === ""){
+        pages.className = "invalid";
+        pagesErrorMessage.textContent = "Please enter the Page count";
+    } else if (pagesOnlyNumbers === true) {
+        pages.className = "invalid";
+        pagesErrorMessage.textContent = "Please enter Page count as a number value";
+    } else {
+        pages.className = "valid";
+        pagesErrorMessage.textContent = "";
+    }
+
+    if(yearWritten.value === ""){
+        yearWritten.className = "invalid";
+        yearWrittenErrorMessage.textContent = "Please enter the year written";
+    } else if (yearWrittenOnlyNumbers === true){
+        yearWritten.className = "invalid";
+        yearWrittenErrorMessage.textContent = "Please enter Years Written as a number";
+    } else {
+        yearWritten.className = "valid";
+        yearWrittenErrorMessage.textContent = "";
+    }
+
+    if(title.className === "valid" && author.className === "valid" && pages.className === "valid" && yearWritten.className === "valid"){
+        return true;
+    } else {
+        return false;
+    }
 }
 
 
